@@ -1,1 +1,33 @@
-{}
+{
+  "auth": {
+    "familyhelper33118859": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  },
+  "api": {
+    "familyhelper": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+            "userPoolConfig": {
+              "userPoolId": "authfamilyhelper33118859"
+            }
+          },
+          "additionalAuthenticationProviders": []
+        }
+      }
+    }
+  },
+  "storage": {
+    "familyHelperBucket": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation"
+    }
+  }
+}
