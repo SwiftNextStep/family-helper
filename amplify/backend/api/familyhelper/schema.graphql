@@ -1,8 +1,9 @@
-type List @model {
+type List @model @searchable {
   id: ID!
   title: String!
   description: String
   imageKey: String
+  slug: String!
   listItems: [ListItem] @connection(name: "ListListItems")
 }
 

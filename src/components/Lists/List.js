@@ -1,9 +1,10 @@
 import { Storage } from 'aws-amplify';
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Dimmer, Icon, Image, Item, Loader } from 'semantic-ui-react';
 
 function List(props) {
-  const { id, title, description, imageKey, createdAt, dispatch } = props;
+  const { id, title, description, imageKey, createdAt, dispatch, slug } = props;
   const [imageUrl, setImageUrl] = useState(
     'https://react.semantic-ui.com/images/wireframe/image.png'
   );
@@ -12,12 +13,14 @@ function List(props) {
   async function fetchImageUrl() {
     const imgUrl = await Storage.get(imageKey);
     setImageUrl(imgUrl);
+    setIsLoading(false);
   }
 
   useEffect(() => {
     if (imageKey) {
-      fetchImageUrl();
+      return fetchImageUrl();
     }
+    setIsLoading(false);
   }, []);
 
   const content = <Loader />;
@@ -31,7 +34,9 @@ function List(props) {
         src={imageUrl}
       ></Dimmer.Dimmable>
       <Item.Content>
-        <Item.Header>{title}</Item.Header>
+        <Item.Header as={Link} to={`/list/${slug}`}>
+          {title}
+        </Item.Header>
         <Item.Description>{description}</Item.Description>
         <Item.Extra>
           {new Date(createdAt).toDateString()}
