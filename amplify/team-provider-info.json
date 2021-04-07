@@ -16,5 +16,23 @@
         "familyhelper33118859": {}
       }
     }
+  },
+  "sns": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-familyhelper-sns-94509-authRole",
+      "UnauthRoleArn": "arn:aws:iam::381100130943:role/amplify-familyhelper-sns-94509-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::381100130943:role/amplify-familyhelper-sns-94509-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-familyhelper-sns-94509-deployment",
+      "UnauthRoleName": "amplify-familyhelper-sns-94509-unauthRole",
+      "StackName": "amplify-familyhelper-sns-94509",
+      "StackId": "arn:aws:cloudformation:us-east-1:381100130943:stack/amplify-familyhelper-sns-94509/5edf9cc0-9721-11eb-96fe-0e30fc137e69",
+      "AmplifyAppId": "d3jg2z8xl6fgn3"
+    },
+    "categories": {
+      "auth": {
+        "familyhelper33118859": {}
+      }
+    }
   }
 }
