@@ -1,4 +1,7 @@
-type List @model @searchable {
+type List
+  @model
+  @searchable
+  @auth(rules: [{ allow: owner, operations: [create, delete, update] }]) {
   id: ID!
   title: String!
   description: String
@@ -7,7 +10,9 @@ type List @model @searchable {
   listItems: [ListItem] @connection(name: "ListListItems")
 }
 
-type ListItem @model {
+type ListItem
+  @model
+  @auth(rules: [{ allow: owner, operations: [create, delete, update, read] }]) {
   id: ID!
   title: String!
   quantity: Int
@@ -16,7 +21,7 @@ type ListItem @model {
   actions: [Action] @connection(name: "ListItemAction")
 }
 
-type Action @model {
+type Action @model @auth(rules: [{ allow: owner }]) {
   id: ID!
   action: String
   listItem: ListItem @connection(name: "ListItemAction")

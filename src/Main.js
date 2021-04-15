@@ -15,6 +15,8 @@ import {
   onUpdateList,
 } from './graphql/subscriptions';
 import ListModal from './components/modals/ListModal';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import ListItems from './ListItems';
 Amplify.configure(awsConfig);
 
 const intialState = {
@@ -148,7 +150,26 @@ function Main() {
         </Button>
         <div className='App'>
           <MainHeader />
-          <Lists lists={state.lists} dispatch={dispatch} />
+
+          <BrowserRouter>
+            <Switch>
+              <Route
+                path='/list/:slug'
+                render={(props) => {
+                  return (
+                    <ListItems
+                      {...state.lists.filter(
+                        (i) => i.slug === props.match.params.slug
+                      )[0]}
+                    />
+                  );
+                }}
+              />
+              <Route path='/'>
+                <Lists lists={state.lists} dispatch={dispatch} />
+              </Route>
+            </Switch>
+          </BrowserRouter>
         </div>
       </Container>
       <ListModal state={state} dispatch={dispatch} />
